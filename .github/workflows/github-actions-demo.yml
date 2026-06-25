@@ -1,0 +1,40 @@
+# 檔案路徑：.github/workflows/github-actions-demo.yml
+# 這個檔案的位置很重要！必須放在 repo 根目錄下的 .github/workflows/ 資料夾裡
+# GitHub 才會自動偵測到它
+
+name: GitHub Actions Demo  # 在 Actions 頁面顯示的名稱
+
+# 1. 觸發條件：什麼時候要執行這個 workflow
+on:
+  push:
+    branches: [main]        # push 到 main branch 時觸發
+  pull_request:
+    branches: [main]        # 對 main 開 PR 時也觸發
+
+# 2. 定義要執行的工作（job）
+jobs:
+  build-and-test:           # job 的名字，你可以自己取
+    runs-on: ubuntu-latest   # 指定虛擬機環境：用最新版 Ubuntu
+
+    steps:
+      # 第一步：把你的程式碼下載到這台虛擬機裡
+      - name: Checkout 程式碼
+        uses: actions/checkout@v4
+
+      # 第二步：安裝指定版本的 Node.js
+      - name: 設定 Node.js 環境
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # 第三步：安裝專案依賴套件
+      - name: 安裝依賴
+        run: npm install
+
+      # 第四步：跑測試
+      - name: 執行測試
+        run: npm test
+
+      # 第五步：印出一些訊息（示範用，純粹測試 workflow 有沒有跑起來）
+      - name: 印出完成訊息
+        run: echo "✅ Workflow 執行完畢！"
