@@ -2,7 +2,7 @@
 # 這個檔案的位置很重要！必須放在 repo 根目錄下的 .github/workflows/ 資料夾裡
 # GitHub 才會自動偵測到它
 
-name: GitHub Actions Demo  # 在 Actions 頁面顯示的名稱
+name: 測試中文action名稱 # 在 Actions 頁面顯示的名稱
 
 # 1. 觸發條件：什麼時候要執行這個 workflow
 on:
